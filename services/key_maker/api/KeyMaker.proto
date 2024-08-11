@@ -1,0 +1,34 @@
+
+syntax = "proto3";
+
+option go_package = "./KeyMaker";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+// The greeting service definition.
+service KeyMaker {
+  // Sends a greeting
+  rpc CreateUserFromKey (CreateUserKeyRequest) returns (google.protobuf.Empty) {}
+  // Sends another greeting
+  rpc GetUserEncryptedKey (GetUserEncryptedKeyRequest) returns (google.protobuf.StringValue) {}
+  // Given the clients old key
+  rpc ChangeUserKey (ChangeUserKeyRequest) returns (google.protobuf.Empty) {}
+}
+
+// The request message containing the user's name.
+message CreateUserKeyRequest {
+  string user_id = 1;
+  string userEncryptionKey = 2;
+}
+
+// The response message containing the greetings
+message GetUserEncryptedKeyRequest {
+  string user_id = 1;
+}
+
+message ChangeUserKeyRequest {
+  string userId = 3;
+  string oldKey = 1;
+  string newKey = 2;
+}

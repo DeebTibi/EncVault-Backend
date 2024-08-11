@@ -1,0 +1,25 @@
+
+syntax = "proto3";
+
+option go_package = "./TokenGenerator";
+
+import "google/protobuf/wrappers.proto";
+
+// The greeting service definition.
+service TokenGenerator {
+  // Sends a greeting
+  rpc CreateUserToken (CreateUserTokenRequest) returns (google.protobuf.StringValue) {}
+  // Sends another greeting
+  rpc ValidateUserToken (ValidateUserTokenRequest) returns (google.protobuf.BoolValue) {}
+}
+
+// The request message containing the user's name.
+message CreateUserTokenRequest {
+  string user_id = 1;
+}
+
+// The response message containing the greetings
+message ValidateUserTokenRequest {
+  string user_id = 1;
+  string userToken = 2;
+}

@@ -1,0 +1,32 @@
+
+syntax = "proto3";
+
+option go_package = "./Registry";
+
+import "google/protobuf/empty.proto";
+
+service Registry {
+  rpc Discover (DiscoverRequest) returns (DiscoverResponse) {}
+  rpc Register (RegisterRequest) returns (google.protobuf.Empty) {}
+  rpc Unregister (UnregisterRequest) returns (google.protobuf.Empty) {}
+}
+
+// The request message containing the user's name.
+message DiscoverRequest {
+  string service_name = 1;
+}
+
+message DiscoverResponse {
+    repeated string service_ips = 1;
+}
+
+// The response message containing the greetings
+message RegisterRequest {
+  string service_name = 1;
+  string service_ip = 2;
+}
+
+message UnregisterRequest {
+  string service_name = 1;
+  string service_ip = 2;
+}
